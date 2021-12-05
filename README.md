@@ -1,6 +1,4 @@
-# For Fun
-
-Solutions for Advent of Code - year 2021.
+# Solutions for Advent of Code
 
 https://adventofcode.com/2021
 
