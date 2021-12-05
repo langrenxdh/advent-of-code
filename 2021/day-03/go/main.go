@@ -51,10 +51,8 @@ func dataProcessorPart2(data []uint16, lookForCommon bool, bitPos int) (result u
 		if lookForCommon {
 			ref = 1
 		}
-	} else {
-		if !lookForCommon {
-			ref = 1
-		}
+	} else if !lookForCommon {
+		ref = 1
 	}
 
 	var data2 []uint16
@@ -67,10 +65,6 @@ func dataProcessorPart2(data []uint16, lookForCommon bool, bitPos int) (result u
 	if len(data2) == 1 {
 		return data2[0]
 	} else {
-		if bitPos <= 0 {
-			log.Fatalln("bitPos go low")
-		}
-
 		result = dataProcessorPart2(data2, lookForCommon, bitPos-1)
 	}
 
