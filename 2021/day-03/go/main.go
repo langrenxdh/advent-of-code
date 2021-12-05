@@ -12,13 +12,11 @@ var bitLenSet bool
 var bitLen int
 var numbers []uint16
 
-const MaxUint16 = ^uint16(0)
-
 func main() {
 	preProcessData()
 
 	gammaRate := dataProcessorPart1(numbers)
-	epsilonRate := ^gammaRate & ((MaxUint16 << (16 - bitLen)) >> (16 - bitLen))
+	epsilonRate := ^gammaRate & ((^uint16(0) << (16 - bitLen)) >> (16 - bitLen))
 
 	oxygenRate := dataProcessorPart2(numbers, true, bitLen-1)
 	co2Rate := dataProcessorPart2(numbers, false, bitLen-1)
