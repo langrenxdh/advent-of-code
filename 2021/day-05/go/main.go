@@ -21,7 +21,7 @@ func main() {
 
 func game1() {
 	board = make([][]int, X)
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < X; i++ {
 		board[i] = make([]int, Y)
 	}
 	for _, pp := range points {
@@ -85,8 +85,9 @@ func preProcessData() {
 		}
 	}
 
-	X = 1000
-	Y = 1000
+	X += 1
+	Y += 1
+
 	file.Close()
 }
 
