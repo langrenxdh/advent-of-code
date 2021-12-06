@@ -16,10 +16,12 @@ var points [][]int
 
 func main() {
 	preProcessData()
-	game1()
+	game(true)
+	game(false)
 }
 
-func game1() {
+func game(horizontalOnly bool) {
+	board = nil
 	board = make([][]int, X)
 	for i := 0; i < X; i++ {
 		board[i] = make([]int, Y)
@@ -29,15 +31,15 @@ func game1() {
 		y1 := pp[1]
 		x2 := pp[2]
 		y2 := pp[3]
-		if x1 == x2 || y1 == y2 {
-			count := Abs(x1 - x2 + y1 - y2)
+		if (horizontalOnly && (x1 == x2 || y1 == y2)) || !horizontalOnly {
+			count := Max(Abs(x1-x2), Abs(y1-y2))
 
 			d := math.Sqrt((float64(x1)-float64(x2))*(float64(x1)-float64(x2))+(float64(y1)-float64(y2))*(float64(y1)-float64(y2))) / float64(count)
 			fi := math.Atan2(float64(y2)-float64(y1), float64(x2)-float64(x1))
 
 			for i := 0; i <= count; i++ {
-				x := x1 + int(float64(i)*d*math.Cos(fi))
-				y := y1 + int(float64(i)*d*math.Sin(fi))
+				x := int(math.Round(float64(x1) + float64(i)*d*math.Cos(fi)))
+				y := int(math.Round(float64(y1) + float64(i)*d*math.Sin(fi)))
 				board[x][y] += 1
 			}
 		}
@@ -103,4 +105,11 @@ func Abs(x int) int {
 		return -x
 	}
 	return x
+}
+
+func Max(x int, y int) int {
+	if x > y {
+		return x
+	}
+	return y
 }
